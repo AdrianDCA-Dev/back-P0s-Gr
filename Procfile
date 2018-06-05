@@ -1,0 +1,1 @@
+web: vendor/bint/heroku-php-apache2 public/
