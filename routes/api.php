@@ -17,7 +17,7 @@ Route::post('auth/login','AuthController@login');
 Route::post('auth/refresh','AuthController@refresh');
 Route::get('auth/logout','AuthController@logout');
 Route::get('role', 'ApiController\UserController@role');
-Route::post('user', 'ApiController\UserController@store');
+
 Route::group(['middleware' => 'jwt.auth', 'namespace' => 'ApiController\\'], function(){
     Route::get('persona', 'PersonaController@index');
     Route::post('persona', 'PersonaController@store');
@@ -25,7 +25,7 @@ Route::group(['middleware' => 'jwt.auth', 'namespace' => 'ApiController\\'], fun
     Route::delete('persona/{id}', 'PersonaController@destroy');
 
     Route::get('user', 'UserController@index');
-
+    Route::post('user', 'UserController@store');
     Route::put('user/{id}', 'UserController@update');
     Route::delete('user/{id}', 'UserController@destroy');
     Route::put('abil/{id}', 'UserController@editEstado');
