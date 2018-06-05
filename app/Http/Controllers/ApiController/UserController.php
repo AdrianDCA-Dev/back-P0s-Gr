@@ -80,7 +80,7 @@ class UserController extends Controller
         $user = new User();
         $persona->save();
 
-        $formacion = json_decode(json_encode($request->formacion));
+       /* $formacion = json_decode(json_encode($request->formacion));
 
         foreach ($formacion as $formaciones) {
             $for = new Formacion();
@@ -88,7 +88,7 @@ class UserController extends Controller
             $for->fecEmision = $formaciones->fecEmision;
             $for->persona()->associate($persona);
             $for->save();
-        }
+        }*/
 
         $user->name = trim($resultado);
         $user->email = trim(strtolower($request->email));
