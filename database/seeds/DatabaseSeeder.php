@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonaSeed::class);
         $this->call(PerfilSeed::class);
         $this->call(UserSeeder::class);
-        $this->call(EntrustSeeder::class);
+        //$this->call(EntrustSeeder::class);
         $this->call(AmbienteSeeder::class);
 
        /* DB::statement('SET FOREIGN_KEY_CHECKS=1;');*/
