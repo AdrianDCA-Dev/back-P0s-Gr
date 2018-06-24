@@ -11,7 +11,7 @@ class PersonaSeed extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
+        //DB::table('users')->truncate();
 
         $academico = new \App\Persona();
 
@@ -24,7 +24,7 @@ class PersonaSeed extends Seeder
         $academico->direccion = "B/Juan 23";
         $academico->fono = "6689325";
         $academico->save();
-
+/*
         $administrativo = new \App\Persona();
         $administrativo->dni = "58696523";
         $administrativo->nombres = "Jose Antonio";
@@ -67,6 +67,6 @@ class PersonaSeed extends Seeder
         $persona2->fechaNac = "2018-02-10";
         $persona2->direccion = "B/Murillo";
         $persona2->fono = "6625654";
-        $persona2->save();
+        $persona2->save();*/
     }
 }

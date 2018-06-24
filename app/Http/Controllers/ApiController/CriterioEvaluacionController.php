@@ -68,6 +68,7 @@ class CriterioEvaluacionController extends Controller
             $criterio->save();
             $criterio->detalle_cronograma;
             $criterio->detalle_cronograma->cronograma->programa_academico;
+            $criterio->detalle_cronograma->modulo->programa_academico;
             $criterio->persona;
             $criterio->detalle_cronograma->ambiente;
             $criterio->detalle_cronograma->persona;
@@ -119,16 +120,16 @@ class CriterioEvaluacionController extends Controller
             'fecha' => 'required|date',
             'nombre' => 'required|string',
             'porcentaje' => 'required|string',
-            'tipo_evaluacion' => 'required|string',
+            //'tipo_evaluacion' => 'required|string',
             'detalle_cronograma_id' => 'required|integer',
         ]);
 
-        $criterio = CriterioEvaluacion::find();
+        $criterio = CriterioEvaluacion::find($id);
         $criterio->fecha = trim($request->fecha);
         $criterio->nombre = trim($request->nombre);
         $criterio->porcentaje = trim($request->porcentaje);
         $criterio->tipo_evaluacion = trim($request->tipo_evaluacion);
-        $criterio->valido = true;
+        $criterio->valido = 1;
         $criterio->detalle_cronograma()->associate($request->detalle_cronograma_id);
         $criterio->save();
 

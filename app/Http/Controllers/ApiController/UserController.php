@@ -79,26 +79,25 @@ class UserController extends Controller
 
         $user = new User();
         $persona->save();
-
-       /* $formacion = json_decode(json_encode($request->formacion));
-
-        foreach ($formacion as $formaciones) {
-            $for = new Formacion();
-            $for->titulo = $formaciones->titulo;
-            $for->fecEmision = $formaciones->fecEmision;
-            $for->persona()->associate($persona);
-            $for->save();
-        }*/
-
         $user->name = trim($resultado);
         $user->email = trim(strtolower($request->email));
         $user->password = bcrypt(trim($resultado));
         $user->estado = true;
         $user->persona()->associate($persona);
         $user->save();
-        $user->persona;
         $user->roles()->sync($request->role);
+
+        $formacion = json_decode(json_encode($request->formacion));
+        foreach ($formacion as $formaciones) {
+            $for = new Formacion();
+            $for->titulo = $formaciones->titulo;
+            $for->fecEmision = $formaciones->fecEmision;
+            $for->persona()->associate($persona);
+            $for->save();
+        }
+        $user->persona;
         $user->role;
+
         return response()->json(compact('user'));
     }
 

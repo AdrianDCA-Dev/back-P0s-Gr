@@ -11,7 +11,7 @@ class PerfilSeed extends Seeder
      */
     public function run()
     {
-        DB::table('perfils')->truncate();
+        //DB::table('perfils')->truncate();
 
         $academico = new \App\Perfil();
 

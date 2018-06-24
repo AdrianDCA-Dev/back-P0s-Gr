@@ -90,6 +90,8 @@ Route::group(['middleware' => 'jwt.auth', 'namespace' => 'ApiController\\'], fun
     Route::delete('evalestudiante', 'EvaluacionEstudianteController@destroy');
     Route::get('evalestudiantepromodule/{id}', 'EvaluacionEstudianteController@programModule');
     Route::get('evalmodulestudiante/{idp}/{idpa}', 'EvaluacionEstudianteController@moduleEval');
+
+    Route::get('evalestudiantecriterio/{idp}/{idm}', 'EvaluacionEstudianteController@evaluacionCriterio');
 /*  Route::get('detalleevaluacion', 'DetalleEvaluacionController@index');
     Route::post('detalleevaluacion', 'DetalleEvaluacionController@store');
     Route::put('detalleevaluacion/{id}', 'DetalleEvaluacionController@update');

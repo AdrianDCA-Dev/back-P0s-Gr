@@ -11,7 +11,7 @@ class AmbienteSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ambientes')->truncate();
+        //DB::table('ambientes')->truncate();
 
         $A301 = new \App\Ambiente();
         $A301->nombre = "A301";

@@ -11,18 +11,18 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
+       // DB::table('users')->truncate();
 
         $academico = new \App\User();
 
-        $academico->name = "carlitos";
-        $academico->email = "docente@docente.com";
-        $academico->password = bcrypt('123456789');
+        $academico->name = "10203040";
+        $academico->email = "admin@admin.com";
+        $academico->password = bcrypt('10203040');
         $academico->estado = true;
         $academico->persona_id = 1;
         $academico->save();
 
-        $administrativo = new \App\User();
+     /*   $administrativo = new \App\User();
         $administrativo->name = "joselito";
         $administrativo->email = "admin@admin.com";
         $administrativo->password = bcrypt('123456789');
@@ -37,6 +37,6 @@ class UserSeeder extends Seeder
         $becario->password = bcrypt('123456789');
         $becario->estado = true;
         $becario->persona_id = 3;
-        $becario->save();
+        $becario->save();*/
     }
 }
