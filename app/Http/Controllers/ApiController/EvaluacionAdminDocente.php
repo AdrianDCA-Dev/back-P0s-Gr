@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ApiController;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class EvaluacionAdminDocente extends Controller
 {
@@ -14,7 +15,17 @@ class EvaluacionAdminDocente extends Controller
      */
     public function index()
     {
-        //
+        $admindocente = DB::select('SELECT * FROM detalle_cronogramas
+                                    INNER JOIN personas
+                                    ON detalle_cronogramas.persona_id = personas.id
+                                    INNER JOIN modulos
+                                    ON modulos.id = detalle_cronogramas.modulo_id
+                                    WHERE (detalle_cronogramas.vigente = \'Activo\') AND detalle_cronogramas.id not in (
+                                    SELECT detalle_avaluacions.detalle_cronograma_id FROM detalle_avaluacions
+                                    WHERE not indicador_id is null
+                                )');
+
+        return response()->json(compact('admindocente'));
     }
 
     /**

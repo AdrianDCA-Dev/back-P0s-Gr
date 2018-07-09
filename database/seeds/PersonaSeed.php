@@ -15,12 +15,12 @@ class PersonaSeed extends Seeder
 
         $academico = new \App\Persona();
 
-        $academico->dni = "10326598";
+        $academico->dni = "10203040-tj";
         $academico->nombres = "Carlos Benito";
         $academico->app = "Choque";
         $academico->apm = "Altamirano";
         $academico->sexo = "Masculino";
-        $academico->fechaNac = "2018-02-10";
+        $academico->fechaNac = "1990-02-10";
         $academico->direccion = "B/Juan 23";
         $academico->fono = "6689325";
         $academico->save();

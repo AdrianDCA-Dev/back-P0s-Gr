@@ -92,8 +92,14 @@ Route::group(['middleware' => 'jwt.auth', 'namespace' => 'ApiController\\'], fun
     Route::get('evalmodulestudiante/{idp}/{idpa}', 'EvaluacionEstudianteController@moduleEval');
 
     Route::get('evalestudiantecriterio/{idp}/{idm}', 'EvaluacionEstudianteController@evaluacionCriterio');
-/*  Route::get('detalleevaluacion', 'DetalleEvaluacionController@index');
-    Route::post('detalleevaluacion', 'DetalleEvaluacionController@store');
-    Route::put('detalleevaluacion/{id}', 'DetalleEvaluacionController@update');
-    Route::delete('detalleevaluacion/{id}', 'DetalleEvaluacionController@destroy');*/
+
+    Route::get('detalleestudiante/{id}', 'EvaluacionEstudianteController@detallestudiante');
+    Route::post('evaluacionestudiante', 'EvaluacionEstudianteController@store');
+
+    Route::get('evaluardocente/{id}', 'EvaluacionDocenteController@index');
+    Route::get('evaluaradmindocente', 'EvaluacionAdminDocente@index');
+    /*  Route::get('detalleevaluacion', 'DetalleEvaluacionController@index');
+        Route::post('detalleevaluacion', 'DetalleEvaluacionController@store');
+        Route::put('detalleevaluacion/{id}', 'DetalleEvaluacionController@update');
+        Route::delete('detalleevaluacion/{id}', 'DetalleEvaluacionController@destroy');*/
 });

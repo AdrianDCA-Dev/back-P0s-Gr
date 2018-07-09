@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\ApiController;
 
 use App\CriterioEvaluacion;
+use App\Detalle_avaluacion;
 use App\Detalle_cronograma;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Programa_academico;
 use Illuminate\Support\Facades\DB;
 use App\Inscripcion;
+use Carbon\Carbon;
+
 class EvaluacionEstudianteController extends Controller
 {
     /**
@@ -57,7 +60,7 @@ class EvaluacionEstudianteController extends Controller
 
     public function evaluacionCriterio($idp, $idm)
     {
-        $criterioEstudiante = DB::select('SELECT criterio_evaluacions.id, criterio_evaluacions.nombre
+        $criterioEstudiante = DB::select('SELECT criterio_evaluacions.id as criterio_id, criterio_evaluacions.nombre as criterio_nombre, detalle_cronogramas.id as detalle_cronograma_id 
                                                 FROM detalle_cronogramas
                                                 INNER JOIN criterio_evaluacions
                                                 ON detalle_cronogramas.id = criterio_evaluacions.detalle_cronograma_id
@@ -71,7 +74,7 @@ class EvaluacionEstudianteController extends Controller
 
     public function detallestudiante($id)
     {
-        $inscripcion = Inscripcion::where('detalle_cronograma_id', '=', $id)->first();
+        $inscripcion = Inscripcion::where('detalle_cronograma_id', '=', $id)->get();
         $inscripcion->each(function ($inscripcion){
             $inscripcion->persona;
         });
@@ -97,7 +100,19 @@ class EvaluacionEstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $evaluacion = json_decode(json_encode($request->evaluacion));
+
+        foreach ($evaluacion as $item){
+            $detallevaluacion = new Detalle_avaluacion();
+            $detallevaluacion->fecha_detalle = Carbon::now()->toDateTimeString();
+            $detallevaluacion->valor = trim($item->valor);
+            $detallevaluacion->detalle_cronograma()->associate($item->detalle_cronograma_id);
+            $detallevaluacion->criterio_evaluacion()->associate($item->criterio_evaluacion_id);
+            $detallevaluacion->inscripcion()->associate($item->inscripcion_id);
+            $detallevaluacion->save();
+
+            return response()->json(compact('detallevaluacion'));
+        }
     }
 
     /**

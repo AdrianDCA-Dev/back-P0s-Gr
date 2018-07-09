@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiController;
 
+use App\Inscripcion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,9 +13,16 @@ class EvaluacionDocenteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $docente = Inscripcion::where('persona_id', '=', $id)->get();
+        $docente->each(function ($docente){
+            $docente->detalle_cronograma->persona;
+            $docente->detalle_cronograma->cronograma->programa_academico;
+            $docente->detalle_cronograma->modulo;
+        });
+
+        return response()->json(compact('docente'));
     }
 
     /**

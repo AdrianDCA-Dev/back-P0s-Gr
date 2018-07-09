@@ -134,16 +134,16 @@ class InscripcionController extends Controller
 
     public function detallecronogrma()
     {
-        $detallecronogrma = Detalle_cronograma::all();
+        /*$detallecronogrma = Detalle_cronograma::all();
         $detallecronogrma->each(function ($detallecronogrma){
             $detallecronogrma->cronograma->programa_academico;
             $detallecronogrma->modulo->programa_academico;
             $detallecronogrma->persona;
-        });
-      /*  $detallecronogrma = Cronograma::all();
+        });*/
+        $detallecronogrma = Cronograma::all();
         $detallecronogrma->each(function ($detallecronogrma){
             $detallecronogrma->programa_academico;
-        });*/
+        });
         return response()->json(compact('detallecronogrma'));
     }
 }
