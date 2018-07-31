@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Indicadore;
 use App\RegistroCampo;
+use Carbon\Carbon;
 
 class RegitroCampoIndicadores extends Controller
 {
@@ -43,7 +44,7 @@ class RegitroCampoIndicadores extends Controller
     public function store(Request $request)
     {
         $registrocampo = new RegistroCampo();
-        $registrocampo->fecha = $request->fecha;
+        $registrocampo->fecha = Carbon::now()->toDateTimeString();
         $registrocampo->tipo = $request->tipo;
         $registrocampo->valido = 1;
         $registrocampo->save();
@@ -63,6 +64,12 @@ class RegitroCampoIndicadores extends Controller
         return response()->json(compact('registrocampo'));
     }
 
+    public function indicadores()
+    {
+        $indicadores = Indicadore::all();
+
+        return response()->json(compact('indicadores'));
+    }
     /**
      * Display the specified resource.
      *
@@ -105,7 +112,7 @@ class RegitroCampoIndicadores extends Controller
      */
     public function destroy($id)
     {
-        $registroindicadores = indicadore();
+        $registroindicadores = Indicadore();
         $registroindicadores->delete();
         $registroindicadores->registro_campo->delete();
     }

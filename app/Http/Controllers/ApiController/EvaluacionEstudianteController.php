@@ -65,7 +65,9 @@ class EvaluacionEstudianteController extends Controller
                                                 INNER JOIN criterio_evaluacions
                                                 ON detalle_cronogramas.id = criterio_evaluacions.detalle_cronograma_id
                                                 WHERE detalle_cronogramas.persona_id = ?
-                                                AND detalle_cronogramas.modulo_id = ?',[$idp, $idm]);
+                                                AND detalle_cronogramas.modulo_id = ?
+                                                AND criterio_evaluacions.tipo_evaluacion = 1
+                                                AND criterio_evaluacions.valido = 1',[$idp, $idm]);
 
         //$criterioEstudiante = CriterioEvaluacion::where('detalle_cronograma_id', '=', $id)->get();
 

@@ -84,6 +84,8 @@ Route::group(['middleware' => 'jwt.auth', 'namespace' => 'ApiController\\'], fun
     Route::get('registercamind', 'RegitroCampoIndicadores@index');
     Route::post('registercamind', 'RegitroCampoIndicadores@store');
 
+    Route::get('listindicadores', 'RegitroCampoIndicadores@indicadores');
+
     Route::get('evalestudiante', 'EvaluacionEstudianteController@index');
     Route::post('evalestudiante', 'EvaluacionEstudianteController@store');
     Route::put('evalestudiante', 'EvaluacionEstudianteController@update');
@@ -98,6 +100,7 @@ Route::group(['middleware' => 'jwt.auth', 'namespace' => 'ApiController\\'], fun
 
     Route::get('evaluardocente/{id}', 'EvaluacionDocenteController@index');
     Route::get('evaluaradmindocente', 'EvaluacionAdminDocente@index');
+    Route::get('evaldocentecriterio', 'EvaluacionDocenteController@evaluacionCriterioDocente');
     /*  Route::get('detalleevaluacion', 'DetalleEvaluacionController@index');
         Route::post('detalleevaluacion', 'DetalleEvaluacionController@store');
         Route::put('detalleevaluacion/{id}', 'DetalleEvaluacionController@update');

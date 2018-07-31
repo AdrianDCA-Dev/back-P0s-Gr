@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use App\Inscripcion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class EvaluacionDocenteController extends Controller
 {
@@ -24,7 +25,19 @@ class EvaluacionDocenteController extends Controller
 
         return response()->json(compact('docente'));
     }
+    public function evaluacionCriterioDocente()
+    {
+        $criterioDocente = DB::select('SELECT criterio_evaluacions.id as criterio_id, criterio_evaluacions.nombre as criterio_nombre, detalle_cronogramas.id as detalle_cronograma_id 
+                                                FROM detalle_cronogramas
+                                                INNER JOIN criterio_evaluacions
+                                                ON detalle_cronogramas.id = criterio_evaluacions.detalle_cronograma_id
+                                                WHERE criterio_evaluacions.tipo_evaluacion = 0
+                                                AND criterio_evaluacions.valido = 1');
 
+        //$criterioEstudiante = CriterioEvaluacion::where('detalle_cronograma_id', '=', $id)->get();
+
+        return response()->json(compact('criterioDocente'));
+    }
     /**
      * Show the form for creating a new resource.
      *
